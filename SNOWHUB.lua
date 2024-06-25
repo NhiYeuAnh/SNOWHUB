@@ -2490,8 +2490,7 @@ local ToggleBypassTP = Tabs.M:AddToggle("ToggleBypassTP", {Title = "On Bypass Tp
          
 
 
-    local listfastattack = {'Normal Attack','Mediaum Attack','Super Attack'}
-
+    
     local listfastattack = {'Normal Attack','Fast Attack','Super Fast Attack'}
 
     local DropdownDelayAttack = Tabs.M:AddDropdown("DropdownDelayAttack", {
