@@ -2443,59 +2443,12 @@ local ToggleBypassTP = Tabs.M:AddToggle("ToggleBypassTP", {Title = "On Bypass Tp
                 end)
              end
         end)
-        --[[
-            task.spawn(function()
-                while task.wait() do
-             if _G.BringMob and bringmob then
-            pcall(function()
-                for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
-                if v.Name == MonFarm and (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 250 then
-                if InMyNetWork(v.HumanoidRootPart) then
-                v.HumanoidRootPart.CFrame = FarmPos
-                v.Humanoid.JumpPower = 0
-                v.Humanoid.WalkSpeed = 0
-                v.HumanoidRootPart.Size = Vector3.new(60,60,60)
-                v.HumanoidRootPart.CanCollide = false
-                v.Head.CanCollide = false
-                end
-                end
-                end
-                end)
-              end
-              end
-              end)
-            
-            task.spawn(function()
-              while true do wait()
-              if setscriptable then
-              setscriptable(game.Players.LocalPlayer,"SimulationRadius",true)
-              end
-              if sethiddenproperty then
-              sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius",math.huge)
-              end
-              end
-              end)
-            
-            function InMyNetWork(object)
-            if isnetworkowner then
-            return isnetworkowner(object)
-            else
-              if (object.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 250 then
-            return true
-            end
-            return false
-            end
-            end
-     ]]
-         
-
-
-    
+    local Setting + Farm = Tabs.M:AddSection("Setting + Farm")
     local listfastattack = {'Normal Attack','Fast Attack','Super Fast Attack'}
 
     local DropdownDelayAttack = Tabs.M:AddDropdown("DropdownDelayAttack", {
         Title = "Select Fast Attack",
-        Description = "Chọn Tốc Độ Đánh",
+        Description = "",
         Values = listfastattack,
         Multi = false,
         Default = 1,
