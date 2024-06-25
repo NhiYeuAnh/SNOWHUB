@@ -1977,18 +1977,6 @@ getgenv().ToTargets = function(p)
 	    end)
     end)
     end
-local Noclip = Instance.new("BodyVelocity")
-							Noclip.Name = "BodyClip"
-							Noclip.Parent = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-							Noclip.MaxForce = Vector3.new(100000,100000,100000)
-							Noclip.Velocity = Vector3.new(0,0,0)
-						end
-					else
-						game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip"):Destroy()
-					end
-				end)
-			end
-		end)
 
 
 local Window = Fluent:CreateWindow({
