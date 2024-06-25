@@ -2443,28 +2443,8 @@ local ToggleBypassTP = Tabs.M:AddToggle("ToggleBypassTP", {Title = "On Bypass Tp
                 end)
              end
         end)
-    local Setting + Farm = Tabs.M:AddSection("Setting + Farm")
-    local listfastattack = {'Normal Attack','Fast Attack','Super Fast Attack'}
-
-    local DropdownDelayAttack = Tabs.M:AddDropdown("DropdownDelayAttack", {
-        Title = "Select Fast Attack",
-        Description = "",
-        Values = listfastattack,
-        Multi = false,
-        Default = 1,
-    })
-    DropdownDelayAttack:SetValue("Fast Attack")
-    DropdownDelayAttack:OnChanged(function(Value)
-    _G.FastAttackFaiFao_Mode = Value
-	if _G.FastAttackFaiFao_Mode == "Fast Attack" then
-		_G.Fast_Delay = 0.1
-	elseif _G.FastAttackFaiFao_Mode == "Normal Attack" then
-		_G.Fast_Delay = 0.15
-	elseif _G.FastAttackFaiFao_Mode == "Super Fast Attack" then
-		_G.Fast_Delay = 0
-	end
-end)
-        local ToggleLevel = Tabs.M:AddToggle("ToggleLevel", {
+    
+            local ToggleLevel = Tabs.M:AddToggle("ToggleLevel", {
         Title = "Level Farm",
         Description = "",
         Default = false })
