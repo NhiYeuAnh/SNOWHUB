@@ -2501,12 +2501,12 @@ local ToggleBypassTP = Tabs.M:AddToggle("ToggleBypassTP", {Title = "On Bypass Tp
     })
     DropdownDelayAttack:SetValue("Fast Attack")
     DropdownDelayAttack:OnChanged(function(Value)
-    _G.FastAttackSNOW_Mode = Value
-	if _G.FastAttackSNOW_Mode == "Normal Attack" then
+    _G.FastAttackSnowHub_Mode = Value
+	if _G.FastAttackSnowHub_Mode == "Normal Attack" then
 		_G.Fast_Delay = 0.1
-	elseif _G.FastAttackSNOW_Mode == "Mediaum Attack" then
+	elseif _G.FastAttackSnowHub_Mode == "Mediaum Attack" then
 		_G.Fast_Delay = 0.15
-	elseif _G.FastAttackSNOW_Mode == "Super Attack" then
+	elseif _G.FastAttackSnowHub_Mode == "Super Attack" then
 		_G.Fast_Delay = 0
 	end
 end)        
