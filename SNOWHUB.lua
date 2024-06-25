@@ -2272,10 +2272,10 @@ local AzureGui = Instance.new("ScreenGui")
         function()
             toggleState = not toggleState -- Toggling the state
             if toggleState then
-                ToggleUIButton.Text = "OFF SCRIPT"
+                ToggleUIButton.Text = "OFF"
                 game:GetService("VirtualInputManager"):SendKeyEvent(true, Enum.KeyCode.LeftControl, false, game)
             else
-                ToggleUIButton.Text = "ON SCRIPT"
+                ToggleUIButton.Text = "ON"
                 game:GetService("VirtualInputManager"):SendKeyEvent(true, Enum.KeyCode.LeftControl, false, game)
             end
         end
@@ -2377,7 +2377,7 @@ local AzureGui = Instance.new("ScreenGui")
     end)
     local listfastattack = {'Normal Attack','Mediaum Attack','Super Attack'}
 
-    local DropdownDelayAttack = Tabs.Main:AddDropdown("DropdownDelayAttack", {
+    local DropdownDelayAttack = Tabs.M:AddDropdown("DropdownDelayAttack", {
         Title = "Select Fast Attack",
         Description = "",
         Values = listfastattack,
@@ -2395,7 +2395,7 @@ local AzureGui = Instance.new("ScreenGui")
 		_G.Fast_Delay = 0
 	end
 end)        
-        local ToggleLevel = Tabs.Main:AddToggle("ToggleLevel", {
+        local ToggleLevel = Tabs.M:AddToggle("ToggleLevel", {
         Title = "Level Farm",
         Description = "",
         Default = false })
