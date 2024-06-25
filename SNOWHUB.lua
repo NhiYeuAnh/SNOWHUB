@@ -2374,7 +2374,7 @@ local AzureGui = Instance.new("ScreenGui")
             end)
         end
     end)
-        local ToggleFast = Tabs.Setting:AddToggle("ToggleFast", {Title = "On Fast Attack",Description = "", Default = true })
+        local ToggleFast = Tabs.M:AddToggle("ToggleFast", {Title = "On Fast Attack",Description = "", Default = true })
 ToggleFast:OnChanged(function(Value)
     _G.FastNe = Value
 end)
@@ -2404,7 +2404,7 @@ spawn(function()
         end
     end)
 end)
-local ToggleBypassTP = Tabs.Setting:AddToggle("ToggleBypassTP", {Title = "On Bypass Tp",Description = "", Default = false })
+local ToggleBypassTP = Tabs.M:AddToggle("ToggleBypassTP", {Title = "On Bypass Tp",Description = "", Default = false })
     ToggleBypassTP:OnChanged(function(Value)
         BypassTP = Value
     end)
