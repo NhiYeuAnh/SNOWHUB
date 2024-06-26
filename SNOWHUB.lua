@@ -2496,7 +2496,7 @@ local AzureGui = Instance.new("ScreenGui")
 		_G.Fast_Delay = 0
 	end
 end)
-local ToggleLevel = Tabs.Main:AddToggle("ToggleLevel", {
+local ToggleLevel = Tabs.M:AddToggle("ToggleLevel", {
         Title = "Auto Up Level",
         Description = "",
         Default = false })
