@@ -2707,8 +2707,8 @@ local ToggleBypassTP = Tabs.M:AddToggle("ToggleBypassTP", {Title = "On Bypass Tp
         end
         end
         end)
- local Home Farm = Tabs.Main:AddSection("Home Farm")
-local ToggleLevel = Tabs.Main:AddToggle("ToggleLevel", {
+ local Home Farm = Tabs.M:AddSection("Home Farm")
+local ToggleLevel = Tabs.M:AddToggle("ToggleLevel", {
         Title = "Auto Up Level",
         Description = "",
         Default = false })
