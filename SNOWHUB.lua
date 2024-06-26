@@ -3,7 +3,7 @@ local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/d
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 
 local Window = Fluent:CreateWindow({
-    Title = "SNOW HUB",
+    Title = "SUMMER HUB",
     SubTitle = "Blox Fruits Version 1",
     TabWidth = 160,
     Size = UDim2.fromOffset(480, 360),
@@ -1048,7 +1048,59 @@ end
 end
 
 
+spawn(
+    function()
+        game:GetService("RunService").Stepped:Connect(
+            function()
+                if not donotdixuyentuong then
+                    if asasas then
+                        setfflag("HumanoidParallelRemoveNoPhysics", "False") 
+                        setfflag("HumanoidParallelRemoveNoPhysicsNoSimulate2", "False")
+                        if
+                            game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") and
+                                game.Players.LocalPlayer.Character.Humanoid.Sit
+                         then
+                            game.Players.LocalPlayer.Character.Humanoid.Sit = false
+                        end
+                        if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") then
+                            setfflag("HumanoidParallelRemoveNoPhysics", "False")
+                            setfflag("HumanoidParallelRemoveNoPhysicsNoSimulate2", "False")
+                            game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+                        end
+                    end
+                end
+                if NoClip then
+                    if not game.Players.LocalPlayer.Character.Head:FindFirstChild("BodyVelocity") then
+                        local ag = Instance.new("BodyVelocity")
+                        ag.Velocity = Vector3.new(0, 0, 0)
+                        ag.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
+                        ag.P = 9000
+                        ag.Parent = game.Players.LocalPlayer.Character.Head
+                        for r, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+                            if v:IsA("BasePart") then
+                                v.CanCollide = false
+                            end
+                        end
+                    end
+                elseif not NoClip and game.Players.LocalPlayer.Character.Head:FindFirstChild("BodyVelocity") then
+                    game.Players.LocalPlayer.Character.Head:FindFirstChild("BodyVelocity"):Destroy()
+                end
+            end
+        )
+    end
+)
 
+spawn(
+    function()
+        while task.wait() do
+            if tween and tween.PlaybackState == Enum.PlaybackState.Playing then
+                NoClip = true
+            elseif tween then
+                NoClip = false
+            end
+        end
+    end
+)
 
 ---------------------Esp
 
@@ -2424,80 +2476,84 @@ local AzureGui = Instance.new("ScreenGui")
         end
     end)
 
-    local ToggleLevel = Tabs.M:AddToggle("ToggleLevel", {
-        Title = "Level Farm",
+    local listfastattack = {'Normal Attack','Fast Attack','Super Fast Attack'}
+
+    local DropdownDelayAttack = Tabs.M:AddDropdown("DropdownDelayAttack", {
+        Title = "Select Fast Attack",
+        Description = "",
+        Values = listfastattack,
+        Multi = false,
+        Default = 1,
+    })
+    DropdownDelayAttack:SetValue("On Fast Attack")
+    DropdownDelayAttack:OnChanged(function(Value)
+    _G.FastAttackSummer_Mode = Value
+	if _G.FastAttackSummer_Mode == "Fast Attack" then
+		_G.Fast_Delay = 0.1
+	elseif _G.FastAttackSummer_Mode == "Normal Attack" then
+		_G.Fast_Delay = 0.15
+	elseif _G.FastAttackSummer_Mode == "Super Fast Attack" then
+		_G.Fast_Delay = 0
+	end
+end)
+local ToggleLevel = Tabs.Main:AddToggle("ToggleLevel", {
+        Title = "Auto Up Level",
         Description = "",
         Default = false })
     ToggleLevel:OnChanged(function(Value)
-_G.AutoFarm = Value
-StopTween(_G.AutoFarm)
-end)
-
-spawn(function()
-  while wait() do
-    if _G.AutoFarm then
-      pcall(function()
-        local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
-        if not string.find(QuestTitle, NameMon) then
-          StartMagnet = false
+        _G.AutoLevel = Value
+        if Value == false then
+            wait()
+            toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
+            wait()
+        end
+    end)
+    Options.ToggleLevel:SetValue(false)
+    spawn(function()
+        while task.wait() do
+        if _G.AutoLevel then
+        pcall(function()
+          CheckLevel()
+          if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
           game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+          toTarget(CFrameQ)
+          if (CFrameQ.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 5 then
+          game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest",NameQuest,QuestLv)
+          end
+          elseif string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
+          for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+          if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+          if v.Name == Ms then
+          repeat wait(_G.Fast_Delay)
+          AttackNoCoolDown()
+          bringmob = true
+          AutoHaki()
+          EquipTool(SelectWeapon)
+          Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
+          v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+          v.HumanoidRootPart.Transparency = 1
+          v.Humanoid.JumpPower = 0
+          v.Humanoid.WalkSpeed = 0
+          v.HumanoidRootPart.CanCollide = false
+          FarmPos = v.HumanoidRootPart.CFrame
+          MonFarm = v.Name
+          until not _G.AutoLevel or not v.Parent or v.Humanoid.Health <= 0 or not game:GetService("Workspace").Enemies:FindFirstChild(v.Name) or game.Players.LocalPlayer.PlayerGui.Main.Quest.Visible == false
+          bringmob = false
+        end   
+          end
+          end
+          for i,v in pairs(game:GetService("Workspace")["_WorldOrigin"].EnemySpawns:GetChildren()) do
+          if string.find(v.Name,NameMon) then
+          if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).Magnitude >= 10 then
+            Tween(v.CFrame * CFrame.new(posX,posY,posZ))
+          end
+          end
+          end
+          end
+          end)
         end
-        if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
-          StartMagnet = false
-          CheckQuest()
-          if _G.Bypass then
-            if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - CFrameQuest.Position).Magnitude > 1500 then
-              BTP(CFrameQuest)
-            elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - CFrameQuest.Position).Magnitude <= 1500 then
-              topos(CFrameQuest)
-            else
-              topos(CFrameQuest)
-            end
-          else
-            topos(CFrameQuest)
-          end
-          if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - CFrameQuest.Position).Magnitude <= 20 then
-            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest",NameQuest,LevelQuest)
-          end
-        elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
-          CheckQuest()
-          if game:GetService("Workspace").Enemies:FindFirstChild(Mon) then
-            for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-              if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
-                if v.Name == Mon then
-                  if string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) then
-                    repeat task.wait(_G.FastAttackDelay)
-                      EquipWeapon(_G.SelectWeapon)
-                      AutoHaki()                                            
-                      PosMon = v.HumanoidRootPart.CFrame
-                      topos(v.HumanoidRootPart.CFrame * CFrame.new(PosX,20,PosZ))
-                      v.HumanoidRootPart.CanCollide = false
-                      v.Humanoid.WalkSpeed = 0
-                      v.Head.CanCollide = false
-                      v.HumanoidRootPart.Size = Vector3.new(70,70,70)
-                      StartMagnet = true
-                      game:GetService'VirtualUser':CaptureController()
-                      game:GetService'VirtualUser':Button1Down(Vector2.new(0,1,0,1))
-                    until not _G.AutoFarm or v.Humanoid.Health <= 0 or not v.Parent or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false
-                  else
-                    StartMagnet = false
-                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
-                  end
-                end
-              end
-            end
-          else
-            topos(CFrameMon)
-            StartMagnet = false
-            if game:GetService("ReplicatedStorage"):FindFirstChild(Mon) then
-              topos(game:GetService("ReplicatedStorage"):FindFirstChild(Mon).HumanoidRootPart.CFrame * CFrame.new(15,10,2))
-            end
-          end
         end
-      end)
-    end
-  end
-end)
+        end)
 
 
         local ToggleFast = Tabs.M:AddToggle("ToggleFast", {Title = "On Fast Attack",Description = "", Default = true })
