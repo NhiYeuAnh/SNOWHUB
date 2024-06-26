@@ -8,11 +8,12 @@ local Window = Fluent:CreateWindow({
     TabWidth = 160,
     Size = UDim2.fromOffset(480, 360),
     Acrylic = true,
-    Theme = "Darker",
+    Theme = "Dark",
     MinimizeKey = Enum.KeyCode.LeftControl
 })
 local Tabs = {
 M = Window:AddTab({ Title = "Home", Icon = "" }),
+Farm = Window:AddTab({ Title = "Sub Farming", Icon = "" }),
 }
 local Options = Fluent.Options
 --// Place Id Check
@@ -2707,8 +2708,8 @@ local ToggleBypassTP = Tabs.M:AddToggle("ToggleBypassTP", {Title = "On Bypass Tp
         end
         end
         end)
- local Home Farm = Tabs.M:AddSection("Home Farm")
-local ToggleLevel = Tabs.M:AddToggle("ToggleLevel", {
+ local Home Farm = Tabs.Farm:AddSection("Home Farm")
+local ToggleLevel = Tabs.Farm:AddToggle("ToggleLevel", {
         Title = "Auto Up Level",
         Description = "",
         Default = false })
