@@ -2250,8 +2250,8 @@ local Window = Fluent:CreateWindow({
     MinimizeKey = Enum.KeyCode.LeftControl
 })
 local Tabs = {
-ST = Window:AddTab({ Title = "Setting", Icon = "" }),
 M = Window:AddTab({ Title = "Sub Farming", Icon = "" }),
+ST = Window:AddTab({ Title = "Setting", Icon = "" }),
 }
 local Options = Fluent.Options
 --// Place Id Check
