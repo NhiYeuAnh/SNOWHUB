@@ -2604,7 +2604,7 @@ local Toggle = Tabs.M:AddToggle("MyToggle", {Title = "Auto Up Level", Default = 
     spawn(function()
         while wait() do
             if _G.AutoFarm then
-                spawn(function()
+                pcall(function()
                     local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
                     if not string.find(QuestTitle, NameMon) then
                         StartMagnet = false
@@ -2642,6 +2642,8 @@ local Toggle = Tabs.M:AddToggle("MyToggle", {Title = "Auto Up Level", Default = 
                                                 v.Head.CanCollide = false
                                                 v.HumanoidRootPart.Size = Vector3.new(70,70,70)
                                                 StartMagnet = true
+                                                game:GetService'VirtualUser':CaptureController()
+                                                game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))
                                             until not _G.AutoFarm or v.Humanoid.Health <= 0 or not v.Parent or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false
                                         else
                                             StartMagnet = false
