@@ -963,7 +963,7 @@ end)
     spawn(function()
         while wait() do
             pcall(function()
-                if _G.KillTrials or _G.AutoTrials or AutoFarmAcient or UpgradeRacev3 or AutoChest or AutoEvoRace or UpRaceV2V3  or _G.AutoFarmFruitMastery or _G.AutoFarmGunMastery or CollectBlueGear or _G.AutoMysticIsland or _G.AutoDoughKing or _G.AutoChimden or _G.AutoAdmin or _G.AutoAdmin or _G.AutoElite or _G.AutoFactory or _G.AutoCastleRaid or _G.AutoSwan or _G.Bartilonhucac or _G.AutoLevel or _G.AutoKatakuri or _G.AutoBone or _G.KillNearest or _G.TeleportIsland or _G.AutoFarmNearest or NoCLip == true then
+                if _G.KillTrials or _G.AutoTrials or _G.Skiplevel or _G.Autotushita  or AutoSaber or _G.AutoYama or Auto_Cursed_Dual_Katana or Auto_Quest_Yama_1 or Auto_Quest_Yama_2 or Auto_Quest_Yama_3 or Auto_Quest_Tushita_1 or Auto_Quest_Tushita_2 or Auto_Quest_Tushita_3 or _G.QuestSoulGuitar or AutoFarmAcient or UpgradeRacev3 or AutoChest or AutoEvoRace or UpRaceV2V3  or _G.AutoFarmFruitMastery or _G.AutoFarmGunMastery or CollectBlueGear or _G.AutoMysticIsland or _G.AutoDoughKing or _G.AutoChimden or _G.AutoAdmin or _G.AutoAdmin or _G.AutoElite or _G.AutoFactory or _G.AutoCastleRaid or _G.AutoSwan or _G.Bartilonhucac or _G.AutoLevel or _G.AutoKatakuri or _G.AutoBone or _G.KillNearest or _G.TeleportIsland or _G.AutoFarmNearest or NoCLip == true then
                     if not game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyGyro") then
                         local Noclip = Instance.new("BodyVelocity")
                         Noclip.Name = "BodyClip"
@@ -1093,6 +1093,63 @@ end
 
 local CheckLevel = game.Players.LocalPlayer.Data.Level.Value
 
+function CheckKick(v)
+    if v.Name == "ErrorPrompt" then
+        if v.Visible then
+            if v.TitleFrame.ErrorTitle.Text ~= "Teleport Failed" then
+                game:GetService("TeleportService"):TeleportToPlaceInstance(
+                    game.PlaceId,
+                    game.JobId,
+                    game.Players.LocalPlayer
+                )
+            end
+        end
+        v:GetPropertyChangedSignal("Visible"):Connect(
+            function()
+                if v.Visible then
+                    if v.TitleFrame.ErrorTitle.Text ~= "Teleport Failed" then
+                        game:GetService("TeleportService"):TeleportToPlaceInstance(
+                            game.PlaceId,
+                            game.JobId,
+                            game.Players.LocalPlayer
+                        )
+                    end
+                end
+            end
+        )
+    end
+end
+game:GetService("CoreGui").RobloxPromptGui.promptOverlay.ChildAdded:Connect(CheckKick)
+Tabs.Main:AddButton({
+    Title = "Redeem All Code",
+    Description = "Redeem all code x2 exp",
+    Callback = function()
+        UseCode("Sub2Fer999")
+        UseCode("Enyu_is_Pro")
+        UseCode("Magicbus")
+        UseCode("JCWK")
+        UseCode("Starcodeheo")
+        UseCode("Bluxxy")
+        UseCode("THEGREATACE")
+        UseCode("SUB2GAMERROBOT_EXP1")
+        UseCode("StrawHatMaine")
+        UseCode("Sub2OfficialNoobie")
+        UseCode("SUB2NOOBMASTER123")
+        UseCode("Sub2Daigrock")
+        UseCode("Axiore")
+        UseCode("TantaiGaming")
+        UseCode("STRAWHATMAINE")
+    end
+})
+
+function UseCode(Text)
+    game:GetService("ReplicatedStorage").Remotes.Redeem:InvokeServer(Text)
+end
+
+
+
+
+
 
 local DropdownSelectWeapon = Tabs.Main:AddDropdown("DropdownSelectWeapon", {
     Title = "Select Weapon",
@@ -1133,54 +1190,150 @@ Tabs.Main:AddParagraph({
     Content = "Chọn farm đi thk béo"
 })
 local ToggleAutoLevel = Tabs.Main:AddToggle("ToggleAutoLevel", {Title = "Auto Farm Level", Default = false })
-    ToggleAutoLevel:OnChanged(function(Value)
-        _G.AutoLevel = Value
+ToggleAutoLevel:OnChanged(function(Value)
+    _G.AutoLevel = Value
 end)
 Options.ToggleAutoLevel:SetValue(false)
+
+
 spawn(function()
     while wait() do
         pcall(function()
-            if _G.AutoLevel then
-                Checknhiemvu()
-                if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMob) or not game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
-                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
-                    if BypassTP then
-                        if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - CFrameQuest.Position).Magnitude > 2000 then
-                            BTP(CFrameQuest)
-                        elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - CFrameQuest.Position).Magnitude < 2000 then
+            if _G.AutoLevel  then
+                    Checknhiemvu()
+                    if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMob) or not game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+                        if BypassTP then
+                            if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - CFrameQuest.Position).Magnitude > 2000 then
+                                BTP(CFrameQuest)
+                            elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - CFrameQuest.Position).Magnitude < 2000 then
+                                Tween(CFrameQuest)
+                            end
+                        else
                             Tween(CFrameQuest)
                         end
-                    else
-                        Tween(CFrameQuest)
+                        if (CFrameQuest.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 5 then
+                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest", NameQuest, NumberQuest)
+                        end
+                    elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true and string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMob) then
+                        if game:GetService("Workspace").Enemies:FindFirstChild(Mob) then
+                            for i, v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                                if v.Name == Mob and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+                                    repeat
+                                        wait()
+                                        EquipTool(_G.UsingTool)
+                                        EnableBuso()                                            
+                                        v.HumanoidRootPart.CanCollide = false
+                                        v.Humanoid.WalkSpeed = 0
+                                        v.Head.CanCollide = false
+                                        v.HumanoidRootPart.Size = Vector3.new(100,100,100)
+                                        Tween(v.HumanoidRootPart.CFrame * Dodge)
+                                        BringMob = true
+                                        PosMon = v.HumanoidRootPart.CFrame
+                                    until not _G.AutoLevel or v.Humanoid.Health <= 0 or not v.Parent or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false
+                                end
+                            end
+                        else
+                            Tween(CFrameMob)
+                            for i, v in pairs(game:GetService("Workspace")["_WorldOrigin"].EnemySpawns:GetChildren()) do
+                                if string.find(v.Name, NameMob) and (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).Magnitude and not game:GetService("Workspace").Enemies:FindFirstChild(NameMob) then
+                                    Tween(v.CFrame * CFrame.new(2, 20, 2))
+                                
+                            end
+                        end
                     end
-                    if (CFrameQuest.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 5 then
-                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest", NameQuest, NumberQuest)
+                end
+            end
+        end)
+    end
+end)
+
+local ToggleSkiplevel = Tabs.Main:AddToggle("ToggleSkiplevel", {Title = "Skip level", Default = false })
+    ToggleSkiplevel:OnChanged(function(Value)
+        _G.Skiplevel = Value
+end)
+spawn(function()
+    while wait() do
+        pcall(function()
+            if _G.Skiplevel == true then
+                LvCount = Data.Level.Value
+                
+                if LvCount >= 1 and LvCount < 60 then
+                    local cframefarm = CFrame.new(-7894.6176757813, 5547.1416015625, -380.29119873047)
+                    if GetDistance(cframefarm.Position) > 1500 then
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(-7894.6176757813, 5547.1416015625, -380.29119873047))
                     end
-                elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true and string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMob) then
-                    if game:GetService("Workspace").Enemies:FindFirstChild(Mob) then
-                        for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                            if v.Name == Mob and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
-                                repeat wait()
-                                    EquipTool(_G.UsingTool)
-                                    EnableBuso()                                            
+                    if Enemies:FindFirstChild("Shanda") then     
+                        for i, v in pairs(Enemies:GetChildren()) do
+                            if v.Name == "Shanda" and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+                                repeat
+                                    task.wait()
+                                    EquipTool(_G.UsingTool)                                                                                                                    
+                                    EnableBuso()
+                                    Tween(CFrame.new(v.HumanoidRootPart.Position + Vector3.new(math.random(-15,15), 20, math.random(-15,15))))               
+                                    PosMon = v.HumanoidRootPart.CFrame                                                                    
+                                    v.HumanoidRootPart.Size = Vector3.new(1, 1, 1)
                                     v.HumanoidRootPart.CanCollide = false
                                     v.Humanoid.WalkSpeed = 0
-                                    v.Head.CanCollide = false
-                                    v.HumanoidRootPart.Size = Vector3.new(100,100,100)
-                                    Tween(v.HumanoidRootPart.CFrame * Dodge)
-                                    BringMob = true
-                                    PosMon = v.HumanoidRootPart.CFrame
-                                until not _G.AutoLevel or v.Humanoid.Health <= 0 or not v.Parent or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false
-                            end
-                        end
-                    else
-                        Tween(CFrameMob)
-                        for i,v in pairs(game:GetService("Workspace")["_WorldOrigin"].EnemySpawns:GetChildren()) do
-                            if string.find(v.Name, NameMob) and (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).Magnitude and not game:GetService("Workspace").Enemies:FindFirstChild(NameMob) then
-                                Tween(v.CFrame * CFrame.new(2, 20, 2))
-                            end
+                                    sethiddenproperty(LP, "SimulationRadius",  math.huge)
+                                    BringMob = true                                                          
+                                until not _G.Skiplevel or not v:FindFirstChild("HumanoidRootPart") or v.Humanoid.Health <= 0
+                                BringMob = false
+                            end 
                         end
                     end
+
+                elseif LvCount >= 300 then
+                    CheckPlayer = 0
+                    local Players = game:GetService("Players"):GetPlayers()
+                    local Quest = PG.Main.Quest
+                    local CheckLevel = Data.Level.Value
+                    local QuestTitle = Quest.Container.QuestTitle.Title.Text
+
+                    local Cac = QuestTitle
+                    Cac = string.gsub(Cac, "Defeat ", "")
+                    Cac = string.gsub(Cac, " %p(0/1)%p", "")
+                    
+                    if Quest.Visible == true then
+                        if string.find(QuestTitle, "Defeat") then
+                            getgenv().Ply = string.split(Cac," ")[2]  -- Sử dụng Cac thay cho QuestTitle
+                            for i, v in pairs(Players) do
+                                if v.Name == getgenv().Ply and v.Character.Humanoid.Health > 0 then
+                                    repeat
+                                        task.wait()
+                                        if v.Data.Level.Value < 20 or v.Data.Level.Value > CheckLevel * 5 then
+                                            Remote:InvokeServer("PlayerHunter")
+                                        end
+                                        if PG.Main.PvpDisabled.Visible == true then
+                                            Remote:InvokeServer("EnablePvp")                   
+                                        end
+                                        EquipTool()
+                                        EnableBuso()	    
+                                        Tween(CFrame.new(v.HumanoidRootPart.Position + Vector3.new(math.random(-15,15), 20, math.random(-15,15))))
+                                    until not _G.Skiplevel or not v:FindFirstChild("HumanoidRootPart") or v.Character.Humanoid.Health <= 0
+                                end
+                            end
+                        else
+                            Remote:InvokeServer("PlayerHunter")
+                        end
+                    else                
+                        if Remote:InvokeServer("PlayerHunter") == "I don't have anything for you right now. Come back later." then
+                            CheckPlayer = CheckPlayer + 1
+                        end
+                    end
+
+                    if CheckPlayer >= 12 and Quest.Visible == false and not string.find(Cac, "Defeat") then  -- Sử dụng Cac thay cho QuestTitle
+                        HopServer()
+                    end
+
+                else
+                    Selectmodef:Set("Level")
+                    Farmop:Set(true)
+                end
+
+                if game.Players.localPlayer.Data.Points.Value >= 1 then
+                    local args = {[1] = "AddPoint", [2] = "Melee", [3] = 1}
+                    RS.Remotes.CommF_:InvokeServer(unpack(args))
                 end
             end
         end)
@@ -1439,7 +1592,7 @@ local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Farm Mastery Fruit", De
                                                 else           
                                                     UseSkill = false 
                                                     EnableBuso()
-                                                    EquipWeapon(_G.UsingTool)
+                                                    EquipTool(_G.UsingTool)
                                                     Tween(v.HumanoidRootPart.CFrame * Doge)
                                                     v.HumanoidRootPart.CanCollide = false
                                                     v.HumanoidRootPart.Size = Vector3.new(70,70,70)
@@ -1621,7 +1774,7 @@ spawn(function()
                                         if string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) then
                                             HealthMin = v.Humanoid.MaxHealth * _G.Kill_At/100
                                             if v.Humanoid.Health <= HealthMin then                                                
-                                                EquipWeapon(SelectWeaponGun)
+                                                EquipTool(SelectWeaponGun)
                                                 Tween(v.HumanoidRootPart.CFrame * CFrame.new(0,0,10))
                                                 v.Humanoid.WalkSpeed = 0
                                                 v.HumanoidRootPart.CanCollide = false
@@ -1640,7 +1793,7 @@ spawn(function()
                                                 game:GetService("VirtualInputManager"):SendKeyEvent(false,120,false,game.Players.LocalPlayer.Character.HumanoidRootPart)
                                             else
                                                 EnableBuso()
-                                                EquipWeapon(_G.UsingTool)
+                                                EquipTool(_G.UsingTool)
                                                 v.Humanoid.WalkSpeed = 0
                                                 v.HumanoidRootPart.CanCollide = false
                                                 v.Head.CanCollide = false               
@@ -2030,7 +2183,6 @@ local Toggle = Tabs.Item:AddToggle("MyToggle", {Title = "Auto Soul Guitar", Defa
 
     Toggle:OnChanged(function(Value)
         _G.QuestSoulGuitar = Value    
-          StopTween(_G.QuestSoulGuitar)
         end)
 
 spawn(function()
@@ -2046,7 +2198,7 @@ spawn(function()
                                     if game:GetService("Workspace").Map["Haunted Castle"].Placard1.Left.Part.Transparency == 0 then
                                         Quest2 = true
                                         repeat task.wait() 
-                                            topos(CFrame.new(-8762.69140625, 176.84783935546875, 6171.3076171875)) 
+                                            Tween(CFrame.new(-8762.69140625, 176.84783935546875, 6171.3076171875)) 
                                         until (CFrame.new(-8762.69140625, 176.84783935546875, 6171.3076171875).Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 3 or not _G.QuestSoulGuitar
                                         wait(1)
                                         fireclickdetector(game:GetService("Workspace").Map["Haunted Castle"].Placard7.Left.ClickDetector)
@@ -2067,14 +2219,14 @@ spawn(function()
                                         if game:GetService("Workspace").Map["Haunted Castle"]["Lab Puzzle"].ColorFloor.Model.Part1:FindFirstChild("ClickDetector") then
                                             Quest4 = true
                                             repeat task.wait() 
-                                                topos(CFrame.new(-9553.5986328125, 65.62338256835938, 6041.58837890625)) 
+                                                Tween(CFrame.new(-9553.5986328125, 65.62338256835938, 6041.58837890625)) 
                                             until (CFrame.new(-9553.5986328125, 65.62338256835938, 6041.58837890625).Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 3 or not _G.QuestSoulGuitar
                                             wait(1)
-                                            topos(game:GetService("Workspace").Map["Haunted Castle"]["Lab Puzzle"].ColorFloor.Model.Part3.CFrame)
+                                            Tween(game:GetService("Workspace").Map["Haunted Castle"]["Lab Puzzle"].ColorFloor.Model.Part3.CFrame)
                                             wait(1)
                                             fireclickdetector(game:GetService("Workspace").Map["Haunted Castle"]["Lab Puzzle"].ColorFloor.Model.Part3.ClickDetector)
                                             wait(1)
-                                            topos(game:GetService("Workspace").Map["Haunted Castle"]["Lab Puzzle"].ColorFloor.Model.Part4.CFrame)
+                                            Tween(game:GetService("Workspace").Map["Haunted Castle"]["Lab Puzzle"].ColorFloor.Model.Part4.CFrame)
                                             wait(1)
                                             fireclickdetector(game:GetService("Workspace").Map["Haunted Castle"]["Lab Puzzle"].ColorFloor.Model.Part4.ClickDetector)
                                             wait(1)
@@ -2082,17 +2234,17 @@ spawn(function()
                                             wait(1)
                                             fireclickdetector(game:GetService("Workspace").Map["Haunted Castle"]["Lab Puzzle"].ColorFloor.Model.Part4.ClickDetector)
                                             wait(1)
-                                            topos(game:GetService("Workspace").Map["Haunted Castle"]["Lab Puzzle"].ColorFloor.Model.Part6.CFrame)
+                                            Tween(game:GetService("Workspace").Map["Haunted Castle"]["Lab Puzzle"].ColorFloor.Model.Part6.CFrame)
                                             wait(1)
                                             fireclickdetector(game:GetService("Workspace").Map["Haunted Castle"]["Lab Puzzle"].ColorFloor.Model.Part6.ClickDetector)
                                             wait(1)
                                             fireclickdetector(game:GetService("Workspace").Map["Haunted Castle"]["Lab Puzzle"].ColorFloor.Model.Part6.ClickDetector)
                                             wait(1)
-                                            topos(game:GetService("Workspace").Map["Haunted Castle"]["Lab Puzzle"].ColorFloor.Model.Part8.CFrame)
+                                            Tween(game:GetService("Workspace").Map["Haunted Castle"]["Lab Puzzle"].ColorFloor.Model.Part8.CFrame)
                                             wait(1)
                                             fireclickdetector(game:GetService("Workspace").Map["Haunted Castle"]["Lab Puzzle"].ColorFloor.Model.Part8.ClickDetector)
                                             wait(1)
-                                            topos(game:GetService("Workspace").Map["Haunted Castle"]["Lab Puzzle"].ColorFloor.Model.Part10.CFrame)
+                                            Tween(game:GetService("Workspace").Map["Haunted Castle"]["Lab Puzzle"].ColorFloor.Model.Part10.CFrame)
                                             wait(1)
                                             fireclickdetector(game:GetService("Workspace").Map["Haunted Castle"]["Lab Puzzle"].ColorFloor.Model.Part10.ClickDetector)
                                             wait(1)
@@ -2116,8 +2268,8 @@ spawn(function()
                                             for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
                                                 if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
                                                     if v.Name == "Living Zombie" then
-                                                        EquipWeapon(_G.SelectWeapon)
-                                                        topos(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
+                                                        EquipTool(_G.UsingTool)
+                                                        Tween(v.HumanoidRootPart.CFrame * Doge)
                                                         v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
                                                         v.HumanoidRootPart.Transparency = 1
                                                         v.Humanoid.JumpPower = 0
@@ -2125,20 +2277,20 @@ spawn(function()
                                                         v.HumanoidRootPart.CanCollide = false
                                                         --v.Humanoid:ChangeState(11)
                                                         --v.Humanoid:ChangeState(14)
-                                                        PosMon = v.HumanoidRootPart.CFrame
+                                                        PosMob = v.HumanoidRootPart.CFrame
                                                         MonFarm = v.Name
-                                                        Click()
+                                                        _G.AutoClick = true
                                                     end
                                                 end
                                             end
                                         else
-                                            topos(CFrame.new(-10160.787109375, 138.6616973876953, 5955.03076171875))
+                                            Tween(CFrame.new(-10160.787109375, 138.6616973876953, 5955.03076171875))
                                         end
                                     end
                                 else    
                                     if string.find(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("gravestoneEvent",2), "Error") then
                                         print("Go to Grave")
-                                        topos(CFrame.new(-8653.2060546875, 140.98487854003906, 6160.033203125))
+                                        Tween(CFrame.new(-8653.2060546875, 140.98487854003906, 6160.033203125))
                                     elseif string.find(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("gravestoneEvent",2), "Nothing") then
                                         print("Wait Next Night")
                                     else
@@ -2147,7 +2299,7 @@ spawn(function()
                                 end
                             end
                         else
-                            topos(CFrame.new(-9681.458984375, 6.139880657196045, 6341.3720703125))
+                            Tween(CFrame.new(-9681.458984375, 6.139880657196045, 6341.3720703125))
                         end
                     end
                 end
@@ -2159,8 +2311,7 @@ local Toggle = Tabs.Item:AddToggle("MyToggle", {Title = "Auto Crused Dual Katana
 
     Toggle:OnChanged(function(Value)
         Auto_Cursed_Dual_Katana = Value
-    StopTween(Auto_Cursed_Dual_Katana)
-        end)
+    end)
         
         spawn(function()
         while wait() do
@@ -2168,13 +2319,13 @@ local Toggle = Tabs.Item:AddToggle("MyToggle", {Title = "Auto Crused Dual Katana
                 if Auto_Cursed_Dual_Katana then
                     if game.Players.LocalPlayer.Character:FindFirstChild("Yama") or game.Players.LocalPlayer.Backpack:FindFirstChild("Yama") then
                             if game.Players.LocalPlayer.Backpack:FindFirstChild("Yama") then
-                                EquipWeapon("Yama")
+                                EquipTool("Yama")
                             end
                         elseif 
                                 game.Players.LocalPlayer.Character:FindFirstChild("Tushita") or game.Players.LocalPlayer.Backpack:FindFirstChild("Tushita") or game.Players.LocalPlayer.Character:FindFirstChild("Yama") or game.Players.LocalPlayer.Backpack:FindFirstChild("Yama") then
                         if game.Players.LocalPlayer.Character:FindFirstChild("Tushita") or game.Players.LocalPlayer.Backpack:FindFirstChild("Tushita") then
                             if game.Players.LocalPlayer.Backpack:FindFirstChild("Tushita") then
-                                EquipWeapon("Tushita")
+                                EquipTool("Tushita")
                             end
                         end
                     else
@@ -2254,8 +2405,8 @@ local Toggle = Tabs.Item:AddToggle("MyToggle", {Title = "Auto Crused Dual Katana
                                 for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
                                     if v.Name == "Cursed Skeleton Boss [Lv. 2025] [Boss]" or v.Name == "Cursed Skeleton [Lv. 2200]" then
                                         if v.Humanoid.Health > 0 then
-                                            EquipWeapon(Sword)
-                                            topos(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
+                                            EquipTool(Sword)
+                                            Tween(v.HumanoidRootPart.CFrame * Doge)
                                             v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
                                             v.HumanoidRootPart.Transparency = 1
                                             v.Humanoid.JumpPower = 0
@@ -2265,7 +2416,7 @@ local Toggle = Tabs.Item:AddToggle("MyToggle", {Title = "Auto Crused Dual Katana
                                             --v.Humanoid:ChangeState(14)
                                             PosMon = v.HumanoidRootPart.CFrame
                                             MonFarm = v.Name
-                                            Click()
+                                            _G.AutoClick = true
                                         end
                                     end
                                 end
@@ -2276,13 +2427,13 @@ local Toggle = Tabs.Item:AddToggle("MyToggle", {Title = "Auto Crused Dual Katana
                                 wait(1)
                                 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CDKQuest","Progress","Evil")
                                 wait(1)
-                                topos(CFrame.new(-12361.7060546875, 603.3547973632812, -6550.5341796875))
+                                Tween(CFrame.new(-12361.7060546875, 603.3547973632812, -6550.5341796875))
                                 wait(1.5)
                                 game:GetService("VirtualInputManager"):SendKeyEvent(true, "E", false, game)
                                 wait(1.5)
-                                topos(CFrame.new(-12253.5419921875, 598.8999633789062, -6546.8388671875))
+                                Tween(CFrame.new(-12253.5419921875, 598.8999633789062, -6546.8388671875))
                             else
-                                topos(CFrame.new(-12361.7060546875, 603.3547973632812, -6550.5341796875))
+                                Tween(CFrame.new(-12361.7060546875, 603.3547973632812, -6550.5341796875))
                             end   
                         end
                     end
@@ -2299,13 +2450,13 @@ local Toggle = Tabs.Item:AddToggle("MyToggle", {Title = "Auto Crused Dual Katana
                         for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
                             if v.Name == "Mythological Pirate" then
                                 repeat wait()
-                                    topos(v.HumanoidRootPart.CFrame * CFrame.new(0,0,-2))
+                                    Tween(v.HumanoidRootPart.CFrame * CFrame.new(0,0,-2))
                                 until Auto_Cursed_Dual_Katana == false or Auto_Quest_Yama_1 == false
                                 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CDKQuest","StartTrial","Evil")
                             end
                         end
                     else
-                        topos(CFrame.new(-13451.46484375, 543.712890625, -6961.0029296875))
+                        Tween(CFrame.new(-13451.46484375, 543.712890625, -6961.0029296875))
                     end
                 end)
             end
@@ -2360,10 +2511,10 @@ local Toggle = Tabs.Item:AddToggle("MyToggle", {Title = "Auto Crused Dual Katana
                         if v:FindFirstChild("HazeESP") then
                             repeat wait()
                                 if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > 2000 then
-                                    topos(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
+                                    Tween(v.HumanoidRootPart.CFrame * Doge)
                                 else
-                                    EquipWeapon(Sword)
-                                    topos(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
+                                    EquipTool(Sword)
+                                    Tween(v.HumanoidRootPart.CFrame * Doge)
                                     v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
                                     v.HumanoidRootPart.Transparency = 1
                                     v.Humanoid.JumpPower = 0
@@ -2373,7 +2524,7 @@ local Toggle = Tabs.Item:AddToggle("MyToggle", {Title = "Auto Crused Dual Katana
                                     --v.Humanoid:ChangeState(14)
                                     PosMon = v.HumanoidRootPart.CFrame
                                     MonFarm = v.Name
-                                    Click()
+                                    _G.AutoClick = true
                                     if v.Humanoid.Health <= 0 and v.Humanoid:FindFirstChild("Animator") then
                                         v.Humanoid.Animator:Destroy()
                                     end							
@@ -2383,9 +2534,9 @@ local Toggle = Tabs.Item:AddToggle("MyToggle", {Title = "Auto Crused Dual Katana
                             for x,y in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do
                                 if y:FindFirstChild("HazeESP") then
                                     if (y.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > 2000 then
-                                        topos(y.HumanoidRootPart.CFrameMon* Farm_Mode)
+                                        Tween(y.HumanoidRootPart.CFrameMon* Farm_Mode)
                                     else
-                                        topos(y.HumanoidRootPart.CFrame * Farm_Mode)
+                                        Tween(y.HumanoidRootPart.CFrame * Farm_Mode)
                                     end
                                 end
                             end
@@ -2401,7 +2552,7 @@ local Toggle = Tabs.Item:AddToggle("MyToggle", {Title = "Auto Crused Dual Katana
             if Auto_Quest_Yama_3 then
                 pcall(function()
                     if game.Players.LocalPlayer.Backpack:FindFirstChild("Hallow Essence") then         
-                        topos(game:GetService("Workspace").Map["Haunted Castle"].Summoner.Detection.CFrame)
+                        Tween(game:GetService("Workspace").Map["Haunted Castle"].Summoner.Detection.CFrame)
                     elseif game:GetService("Workspace").Map:FindFirstChild("HellDimension") then
                         repeat wait()
                             if game:GetService("Workspace").Enemies:FindFirstChild("Cursed Skeleton") or game:GetService("Workspace").Enemies:FindFirstChild("Cursed Skeleton") or game:GetService("Workspace").Enemies:FindFirstChild("Hell's Messenger") then
@@ -2409,8 +2560,8 @@ local Toggle = Tabs.Item:AddToggle("MyToggle", {Title = "Auto Crused Dual Katana
                                     if v.Name == "Cursed Skeleton" or v.Name == "Cursed Skeleton" or v.Name == "Hell's Messenger" then
                                         if v.Humanoid.Health > 0 then
                                             repeat wait()
-                                                EquipWeapon(Sword)
-                                                topos(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
+                                                EquipTool(Sword)
+                                                Tween(v.HumanoidRootPart.CFrame * Doge)
                                                 v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
                                                 v.HumanoidRootPart.Transparency = 1
                                                 v.Humanoid.JumpPower = 0
@@ -2420,7 +2571,7 @@ local Toggle = Tabs.Item:AddToggle("MyToggle", {Title = "Auto Crused Dual Katana
                                                 --v.Humanoid:ChangeState(14)
                                                 PosMon = v.HumanoidRootPart.CFrame
                                                 MonFarm = v.Name
-                                                Click()
+                                                _G.AutoClick = true
                                                 if v.Humanoid.Health <= 0 and v.Humanoid:FindFirstChild("Animator") then
                                                     v.Humanoid.Animator:Destroy()
                                                 end
@@ -2430,19 +2581,19 @@ local Toggle = Tabs.Item:AddToggle("MyToggle", {Title = "Auto Crused Dual Katana
                                 end
                             else
                                 wait(5)
-                                topos(game:GetService("Workspace").Map.HellDimension.Torch1.CFrame)
+                                Tween(game:GetService("Workspace").Map.HellDimension.Torch1.CFrame)
                                 wait(1.5)
                                 game:GetService("VirtualInputManager"):SendKeyEvent(true, "E", false, game)
                                 wait(1.5)        
-                                topos(game:GetService("Workspace").Map.HellDimension.Torch2.CFrame)
+                                Tween(game:GetService("Workspace").Map.HellDimension.Torch2.CFrame)
                                 wait(1.5)
                                 game:GetService("VirtualInputManager"):SendKeyEvent(true, "E", false, game)
                                 wait(1.5)     
-                                topos(game:GetService("Workspace").Map.HellDimension.Torch3.CFrame)
+                                Tween(game:GetService("Workspace").Map.HellDimension.Torch3.CFrame)
                                 wait(1.5)
                                 game:GetService("VirtualInputManager"):SendKeyEvent(true, "E", false, game)
                                 wait(1.5)     
-                                topos(game:GetService("Workspace").Map.HellDimension.Exit.CFrame)
+                                Tween(game:GetService("Workspace").Map.HellDimension.Exit.CFrame)
                             end
                         until Auto_Cursed_Dual_Katana == false or Auto_Quest_Yama_3 == false or GetMaterial("Alucard Fragment") == 3
                     else
@@ -2452,13 +2603,13 @@ local Toggle = Tabs.Item:AddToggle("MyToggle", {Title = "Auto Crused Dual Katana
                                     if v.Name == "Soul Reaper" then
                                         if v.Humanoid.Health > 0 then
                                             repeat wait()
-                                                topos(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
+                                                Tween(v.HumanoidRootPart.CFrame * Doge)
                                             until Auto_Cursed_Dual_Katana == false or Auto_Quest_Yama_3 == false or game:GetService("Workspace").Map:FindFirstChild("HellDimension")
                                         end
                                     end
                                 end
                             else
-                                topos(CFrame.new(-9570.033203125, 315.9346923828125, 6726.89306640625))
+                                Tween(CFrame.new(-9570.033203125, 315.9346923828125, 6726.89306640625))
                             end
                         else
                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Bones","Buy",1,1)
@@ -2471,11 +2622,11 @@ local Toggle = Tabs.Item:AddToggle("MyToggle", {Title = "Auto Crused Dual Katana
     spawn(function()
         while wait() do
             if Auto_Quest_Tushita_1 then
-                topos(CFrame.new(-9546.990234375, 21.139892578125, 4686.1142578125))
+                Tween(CFrame.new(-9546.990234375, 21.139892578125, 4686.1142578125))
                 wait(5)
-                topos(CFrame.new(-6120.0576171875, 16.455780029296875, -2250.697265625))
+                Tween(CFrame.new(-6120.0576171875, 16.455780029296875, -2250.697265625))
                 wait(5)
-                topos(CFrame.new(-9533.2392578125, 7.254445552825928, -8372.69921875))    
+                Tween(CFrame.new(-9533.2392578125, 7.254445552825928, -8372.69921875))    
             end
         end
     end)
@@ -2488,8 +2639,8 @@ local Toggle = Tabs.Item:AddToggle("MyToggle", {Title = "Auto Crused Dual Katana
                             if Auto_Quest_Tushita_2 and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
                                 if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude < 2000 then
                                     repeat wait()
-                                        EquipWeapon(Sword)
-                                        topos(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
+                                        EquipTool(Sword)
+                                        Tween(v.HumanoidRootPart.CFrame * Doge)
                                         v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
                                         v.HumanoidRootPart.Transparency = 1
                                         v.Humanoid.JumpPower = 0
@@ -2499,7 +2650,7 @@ local Toggle = Tabs.Item:AddToggle("MyToggle", {Title = "Auto Crused Dual Katana
                                         --v.Humanoid:ChangeState(14)
                                         PosMon = v.HumanoidRootPart.CFrame
                                         MonFarm = v.Name
-                                        Click()
+                                        _G.AutoClick = true
                                         if v.Humanoid.Health <= 0 and v.Humanoid:FindFirstChild("Animator") then
                                             v.Humanoid.Animator:Destroy()
                                         end
@@ -2508,7 +2659,7 @@ local Toggle = Tabs.Item:AddToggle("MyToggle", {Title = "Auto Crused Dual Katana
                             end
                         end
                     else
-                        topos(CFrame.new(-5545.1240234375, 313.800537109375, -2976.616455078125))
+                        Tween(CFrame.new(-5545.1240234375, 313.800537109375, -2976.616455078125))
                     end
                 end)
             end
@@ -2524,8 +2675,8 @@ local Toggle = Tabs.Item:AddToggle("MyToggle", {Title = "Auto Crused Dual Katana
                                 if v.Name == "Cake Queen" then
                                     if v.Humanoid.Health > 0 then
                                         repeat wait()
-                                            EquipWeapon(Sword)
-                                            topos(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
+                                            EquipTool(Sword)
+                                            Tween(v.HumanoidRootPart.CFrame * Doge)
                                             v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
                                             v.HumanoidRootPart.Transparency = 1
                                             v.Humanoid.JumpPower = 0
@@ -2535,7 +2686,7 @@ local Toggle = Tabs.Item:AddToggle("MyToggle", {Title = "Auto Crused Dual Katana
                                             --v.Humanoid:ChangeState(14)
                                             PosMon = v.HumanoidRootPart.CFrame
                                             MonFarm = v.Name
-                                            Click()
+                                            _G.AutoClick = true
                                             if v.Humanoid.Health <= 0 and v.Humanoid:FindFirstChild("Animator") then
                                                 v.Humanoid.Animator:Destroy()
                                             end
@@ -2544,7 +2695,7 @@ local Toggle = Tabs.Item:AddToggle("MyToggle", {Title = "Auto Crused Dual Katana
                                 end
                             end
                         else
-                            topos(CFrame.new(-709.3132934570312, 381.6005859375, -11011.396484375))
+                            Tween(CFrame.new(-709.3132934570312, 381.6005859375, -11011.396484375))
                         end
                     elseif game:GetService("Workspace").Map:FindFirstChild("HeavenlyDimension") then
                         repeat wait()
@@ -2553,8 +2704,8 @@ local Toggle = Tabs.Item:AddToggle("MyToggle", {Title = "Auto Crused Dual Katana
                                     if v.Name == "Cursed Skeleton" or v.Name == "Cursed Skeleton" or v.Name == "Heaven's Guardian" then
                                         if v.Humanoid.Health > 0 then
                                             repeat wait()
-                                                EquipWeapon(Sword)
-                                                topos(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
+                                                EquipTool(Sword)
+                                                Tween(v.HumanoidRootPart.CFrame * Doge)
                                                 v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
                                                 v.HumanoidRootPart.Transparency = 1
                                                 v.Humanoid.JumpPower = 0
@@ -2564,7 +2715,7 @@ local Toggle = Tabs.Item:AddToggle("MyToggle", {Title = "Auto Crused Dual Katana
                                                 --v.Humanoid:ChangeState(14)
                                                 PosMon = v.HumanoidRootPart.CFrame
                                                 MonFarm = v.Name
-                                                Click()
+                                                _G.AutoClick = true
                                                 if v.Humanoid.Health <= 0 and v.Humanoid:FindFirstChild("Animator") then
                                                     v.Humanoid.Animator:Destroy()
                                                 end
@@ -2574,19 +2725,19 @@ local Toggle = Tabs.Item:AddToggle("MyToggle", {Title = "Auto Crused Dual Katana
                                 end
                             else
                                 wait(5)
-                                topos(game:GetService("Workspace").Map.HeavenlyDimension.Torch1.CFrame)
+                                Tween(game:GetService("Workspace").Map.HeavenlyDimension.Torch1.CFrame)
                                 wait(1.5)
                                 game:GetService("VirtualInputManager"):SendKeyEvent(true, "E", false, game)
                                 wait(1.5)        
-                                topos(game:GetService("Workspace").Map.HeavenlyDimension.Torch2.CFrame)
+                                Tween(game:GetService("Workspace").Map.HeavenlyDimension.Torch2.CFrame)
                                 wait(1.5)
                                 game:GetService("VirtualInputManager"):SendKeyEvent(true, "E", false, game)
                                 wait(1.5)     
-                                topos(game:GetService("Workspace").Map.HeavenlyDimension.Torch3.CFrame)
+                                Tween(game:GetService("Workspace").Map.HeavenlyDimension.Torch3.CFrame)
                                 wait(1.5)
                                 game:GetService("VirtualInputManager"):SendKeyEvent(true, "E", false, game)
                                 wait(1.5)     
-                                topos(game:GetService("Workspace").Map.HeavenlyDimension.Exit.CFrame)
+                                Tween(game:GetService("Workspace").Map.HeavenlyDimension.Exit.CFrame)
                             end
                         until not Auto_Cursed_Dual_Katana or not Auto_Quest_Tushita_3 or GetMaterial("Alucard Fragment") == 6
                     end
@@ -2627,13 +2778,12 @@ local ToggleTushita = Tabs.Item:AddToggle("ToggleTushita", {Title = "Auto Tushit
                                     if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
                                         repeat task.wait()
                                             AutoHaki()
-                                            AttackNoCD()
-                                            EquipTool(SelectWeapon)
+                                            EquipTool(_G.UsingTool)
                                             v.HumanoidRootPart.CanCollide = false
                                             v.Humanoid.WalkSpeed = 0
                                             v.HumanoidRootPart.Size = Vector3.new(50,50,50)
                                             Tween(v.HumanoidRootPart.CFrame * Pos)
-                                            Click()
+                                            _G.AutoClick = true
                                             sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius",math.huge)
                                         until not  _G.Autotushita or not v.Parent or v.Humanoid.Health <= 0
                                     end
@@ -2662,10 +2812,9 @@ local ToggleTushita = Tabs.Item:AddToggle("ToggleTushita", {Title = "Auto Tushit
 
 local Toggle = Tabs.Item:AddToggle("MyToggle", {Title = "Get Saber", Default = false })
 
-    Toggle:OnChanged(function(autosaberfunc)
-        AutoSaber = autosaberfunc
-		StopTween(AutoSaber)
-        end)
+    Toggle:OnChanged(function(Value)
+        AutoSaber = Value
+    end)
         
         spawn(function()
         while task.wait() do
@@ -2674,7 +2823,7 @@ local Toggle = Tabs.Item:AddToggle("MyToggle", {Title = "Get Saber", Default = f
                     if game:GetService("Workspace").Map.Jungle.Final.Part.Transparency == 0 then
                         if game:GetService("Workspace").Map.Jungle.QuestPlates.Door.Transparency == 0 then
                             if (CFrame.new(-1612.55884, 36.9774132, 148.719543, 0.37091279, 3.0717151e-09, -0.928667724, 3.97099491e-08, 1, 1.91679348e-08, 0.928667724, -4.39869794e-08, 0.37091279).Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 100 then
-                                topos(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
+                                Tween(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
                                 wait(1)
                                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Map.Jungle.QuestPlates.Plate1.Button.CFrame
                                 wait(1)
@@ -2687,21 +2836,21 @@ local Toggle = Tabs.Item:AddToggle("MyToggle", {Title = "Get Saber", Default = f
                                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Map.Jungle.QuestPlates.Plate5.Button.CFrame
                                 wait(1)
                             else
-                                topos(CFrame.new(-1612.55884, 36.9774132, 148.719543, 0.37091279, 3.0717151e-09, -0.928667724, 3.97099491e-08, 1, 1.91679348e-08, 0.928667724, -4.39869794e-08, 0.37091279))
+                                Tween(CFrame.new(-1612.55884, 36.9774132, 148.719543, 0.37091279, 3.0717151e-09, -0.928667724, 3.97099491e-08, 1, 1.91679348e-08, 0.928667724, -4.39869794e-08, 0.37091279))
                             end
                         else
                             if game:GetService("Workspace").Map.Desert.Burn.Part.Transparency == 0 then
                                 if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Torch") or game.Players.LocalPlayer.Character:FindFirstChild("Torch") then
-                                    EquipWeapon("Torch")
-                                    topos(CFrame.new(1114.61475, 5.04679728, 4350.22803, -0.648466587, -1.28799094e-09, 0.761243105, -5.70652914e-10, 1, 1.20584542e-09, -0.761243105, 3.47544882e-10, -0.648466587))
+                                    EquipTool("Torch")
+                                    Tween(CFrame.new(1114.61475, 5.04679728, 4350.22803, -0.648466587, -1.28799094e-09, 0.761243105, -5.70652914e-10, 1, 1.20584542e-09, -0.761243105, 3.47544882e-10, -0.648466587))
                                   else
-                                  topos(CFrame.new(-1610.00757, 11.5049858, 164.001587, 0.984807551, -0.167722285, -0.0449818149, 0.17364943, 0.951244235, 0.254912198, 3.42372805e-05, -0.258850515, 0.965917408))
+                                  Tween(CFrame.new(-1610.00757, 11.5049858, 164.001587, 0.984807551, -0.167722285, -0.0449818149, 0.17364943, 0.951244235, 0.254912198, 3.42372805e-05, -0.258850515, 0.965917408))
                                 end
                             else
                                 if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ProQuestProgress","SickMan") ~= 0 then
                                     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ProQuestProgress","GetCup")
                                     wait(0.5)
-                                    EquipWeapon("Cup")
+                                    EquipTool("Cup")
                                     wait(0.5)
                                     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ProQuestProgress","FillCup",game:GetService("Players").LocalPlayer.Character.Cup)
                                     wait(0)
@@ -2711,18 +2860,18 @@ local Toggle = Tabs.Item:AddToggle("MyToggle", {Title = "Get Saber", Default = f
                                         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ProQuestProgress","RichSon")
                                     elseif game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ProQuestProgress","RichSon") == 0 then
                                     if game:GetService("Workspace").Enemies:FindFirstChild("Mob Leader") or game:GetService("ReplicatedStorage"):FindFirstChild("Mob Leader") then
-										topos(CFrame.new(-2967.59521, -4.91089821, 5328.70703, 0.342208564, -0.0227849055, 0.939347804, 0.0251603816, 0.999569714, 0.0150796166, -0.939287126, 0.0184739735, 0.342634559)) 
+										Tween(CFrame.new(-2967.59521, -4.91089821, 5328.70703, 0.342208564, -0.0227849055, 0.939347804, 0.0251603816, 0.999569714, 0.0150796166, -0.939287126, 0.0184739735, 0.342634559)) 
                                             for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
                                                 if v.Name == "Mob Leader" then
                                                    if game:GetService("Workspace").Enemies:FindFirstChild("Mob Leader") then
                                                     if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
                                                         repeat task.wait()
-                                                        AutoHaki()
-                                                        EquipWeapon(_G.SelectWeapon)
+                                                        
+                                                        EquipTool(_G.UsingTool)
                                                         v.HumanoidRootPart.CanCollide = false
                                                         v.Humanoid.WalkSpeed = 0
                                                         v.HumanoidRootPart.Size = Vector3.new(80,80,80)                             
-                                                        topos(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
+                                                        Tween(v.HumanoidRootPart.CFrame * Doge)
                                                         game:GetService("VirtualUser"):CaptureController()
                                                         game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
                                                         sethiddenproperty(game:GetService("Players").LocalPlayer,"SimulationRadius",math.huge)
@@ -2730,7 +2879,7 @@ local Toggle = Tabs.Item:AddToggle("MyToggle", {Title = "Get Saber", Default = f
                                                      end
                                                 end
                                                 if game:GetService("ReplicatedStorage"):FindFirstChild("Mob Leader [Lv. 120] [Boss]") then
-                                                    topos(game:GetService("ReplicatedStorage"):FindFirstChild("Mob Leader [Lv. 120] [Boss]").HumanoidRootPart.CFrame * Farm_Mode)
+                                                    Tween(game:GetService("ReplicatedStorage"):FindFirstChild("Mob Leader [Lv. 120] [Boss]").HumanoidRootPart.CFrame * Farm_Mode)
                                                 end
                                             end
                                         end
@@ -2738,9 +2887,9 @@ local Toggle = Tabs.Item:AddToggle("MyToggle", {Title = "Get Saber", Default = f
                                     elseif game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ProQuestProgress","RichSon") == 1 then
                                         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ProQuestProgress","RichSon")
                                         wait(0.5)
-                                        EquipWeapon("Relic")
+                                        EquipTool("Relic")
                                         wait(0.5)
-                                        topos(CFrame.new(-1404.91504, 29.9773273, 3.80598116, 0.876514494, 5.66906877e-09, 0.481375456, 2.53851997e-08, 1, -5.79995607e-08, -0.481375456, 6.30572643e-08, 0.876514494))
+                                        Tween(CFrame.new(-1404.91504, 29.9773273, 3.80598116, 0.876514494, 5.66906877e-09, 0.481375456, 2.53851997e-08, 1, -5.79995607e-08, -0.481375456, 6.30572643e-08, 0.876514494))
                                     end
                                 end
                             end
@@ -2751,8 +2900,9 @@ local Toggle = Tabs.Item:AddToggle("MyToggle", {Title = "Get Saber", Default = f
                                 if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
                                     if v.Name == "Saber Expert" then
                                         repeat task.wait()
-                                            EquipWeapon(_G.SelectWeapon)
-                                            topos(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
+
+                                            EquipTool(_G.UsingTool)
+                                            Tween(v.HumanoidRootPart.CFrame * Doge)
                                             v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
                                             v.HumanoidRootPart.Transparency = 1
                                             v.Humanoid.JumpPower = 0
@@ -2761,7 +2911,7 @@ local Toggle = Tabs.Item:AddToggle("MyToggle", {Title = "Get Saber", Default = f
                                             --v.Humanoid:ChangeState(11)
                                             --v.Humanoid:ChangeState(14)
                                             FarmPos = v.HumanoidRootPart.CFrame
-                                            MonFarm = v.Name
+                                            MobFarm = v.Name
                                             game:GetService'VirtualUser':CaptureController()
                                             game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672),workspace.CurrentCamera.CFrame)
                                         until v.Humanoid.Health <= 0 or not AutoSaber
