@@ -17,7 +17,6 @@ local Window = Fluent:CreateWindow({
     Acrylic = false, -- The blur may be detectable, setting this to false disables blur entirely
     Theme = "Dark",
     MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
- local SaveManager = getgenv().SaveManager 
 })
 
 local vu = game:GetService("VirtualUser")
