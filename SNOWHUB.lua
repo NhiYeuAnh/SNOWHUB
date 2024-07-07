@@ -2301,6 +2301,7 @@ spawn(function()
 		end
 end)
 
+
 local Toggle = Tabs.Item:AddToggle("MyToggle", {Title = "Auto Crused Dual Katana", Default = false })
 
     Toggle:OnChanged(function(Value)
