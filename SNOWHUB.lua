@@ -14,7 +14,7 @@ local Window = Fluent:CreateWindow({
     SubTitle = "Blox Fruits Version",
     TabWidth = 160,
     Size = UDim2.fromOffset(520, 350),
-    Acrylic = false, -- The blur may be detectable, setting this to false disables blur entirely
+    Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
     Theme = "Dark",
     MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
 })
@@ -127,10 +127,6 @@ local AzureGui = Instance.new("ScreenGui")
     end
     coroutine.wrap(drag)()
 
-		end
-	end
-
-	
 ----------------------------------------------------------------------------------------------------------------------------------------------
 
 if game.PlaceId == 2753915549 then
