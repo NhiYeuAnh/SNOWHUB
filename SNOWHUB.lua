@@ -17,6 +17,8 @@ local Window = Fluent:CreateWindow({
     Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
     Theme = "Dark",
     MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
+    function loadconfig()
+    function saveconfig()
 })
 
 local vu = game:GetService("VirtualUser")
@@ -127,6 +129,32 @@ local AzureGui = Instance.new("ScreenGui")
     end
     coroutine.wrap(drag)()
 
+local foldername = "SNOWHUB"
+local filename = foldername.."/Setting.json"
+function saveSettings()
+    local HttpService = game:GetService("HttpService")
+    local json = HttpService:JSONEncode(_G)
+    if true then
+        if isfolder(foldername) then
+            if isfile(filename) then
+                writefile(filename, json)
+            else
+                writefile(filename, json)
+            end
+        else
+            makefolder(foldername)
+        end
+    end
+end
+
+function loadSettings()
+    local HttpService = game:GetService("HttpService")
+    if isfolder(foldername) then
+        if isfile(filename) then
+            _G = HttpService:JSONDecode(readfile(filename))
+        end
+    end
+end
 ----------------------------------------------------------------------------------------------------------------------------------------------
 
 if game.PlaceId == 2753915549 then
@@ -1940,7 +1968,7 @@ spawn(function()
         end)
     end
 end)
-local ToggleBypassTP = Tabs.Main:AddToggle("ToggleBypassTP", {Title = "Bypass Tp", Default = false })
+local ToggleBypassTP = Tabs.Setting:AddToggle("ToggleBypassTP", {Title = "Bypass Tp", Default = false })
     ToggleBypassTP:OnChanged(function(Value)
         BypassTP = Value
     end)
