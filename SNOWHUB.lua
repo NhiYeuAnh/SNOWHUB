@@ -2,8 +2,8 @@ notis = require(game.ReplicatedStorage:WaitForChild("Notification"))
 notis.new("<Color=White>Summer Hub<Color=/>"):Display()
 notis.new("<Color=Blue>Owner: summerhub<Color=/>"):Display() 
 notis.new("<Color=Yellow>Exploit Use:<Color=/> ".. identifyexecutor()):Display() 
-
-
+notis.new("<Color=Yellow>Join Discord To Youtube<Color=/>"):Display() 
+notis.new("<Color=Black>name youtube: summerhub<Color=/>"):Display() 
 --------------------------------------------------------------------------------------------------------------------------------------------
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
@@ -1147,6 +1147,65 @@ function UseCode(Text)
 end
 
 
+local Stats = Tabs.Main:AddDropdown("Stats", {
+    Title = "Select Add Stats",
+    Values = {"Melee", "Defense", "Sword", "Gun", "Devil Fruit"},
+    Multi = false,
+    Default = 1,
+})
+
+Stats:SetValue("Melee")
+
+Stats:OnChanged(function(Value)
+    _G.Stats = Value
+end)
+
+spawn(function()
+    while wait() do
+        if game.Players.localPlayer.Data.Points.Value >= 1 then
+            if _G.Stats == "Melee" then
+                local args = {
+                    [1] = "AddPoint",
+                    [2] = "Melee",
+                    [3] = 1
+                }
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+            end
+            if _G.Stats == "Defense" then
+                local args = {
+                    [1] = "AddPoint",
+                    [2] = "Defense",
+                    [3] = 1
+                }
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+            end
+            if _G.Stats == "Sword" then
+                local args = {
+                    [1] = "AddPoint",
+                    [2] = "Sword",
+                    [3] = 1
+                }
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+            end
+            if _G.Stats == "Gun" then
+                local args = {
+                    [1] = "AddPoint",
+                    [2] = "Gun",
+                    [3] = 1
+                }
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+                end
+            if _G.Stats == "Blox Fruit" then
+                local args = {
+                    [1] = "AddPoint",
+                    [2] = "Blox Fruit",
+                    [3] = 1
+                }
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+            end
+        end
+    end
+end)
 
 
 
@@ -1851,6 +1910,41 @@ end)
     
 
 ---- Setting
+local ToggleAutoAgility = Tabs.Setting:AddToggle("ToggleAutoAgility", {Title = "Auto On Race V3",Description = "", Default = false })
+ToggleAutoAgility:OnChanged(function(Value)
+    _G.AutoAgility = Value
+end)
+spawn(function()
+    pcall(function()
+        while wait() do
+            if _G.AutoAgility then
+                game:GetService("ReplicatedStorage").Remotes.CommE:FireServer("ActivateAbility")
+            end
+        end
+    end)
+end)
+
+local ToggleAutoV4 = Tabs.Setting:AddToggle("ToggleAutoV4", {Title = "Auto Turn On V4", Description = "Auto Bật Tộc V4", Default = false })
+ToggleAutoV4:OnChanged(function(Value)
+    _G.AutoV4 = Value
+end)
+
+spawn(function()
+    while wait() do
+        pcall(function()
+            if _G.AutoV4 then
+                game:GetService("VirtualInputManager"):SendKeyEvent(true,"Y",false,game)
+                wait(0.1)
+                game:GetService("VirtualInputManager"):SendKeyEvent(false,"Y",false,game)
+            end
+        end)
+    end
+end)
+local ToggleBypassTP = Tabs.Main:AddToggle("ToggleBypassTP", {Title = "Bypass Tp", Default = false })
+    ToggleBypassTP:OnChanged(function(Value)
+        BypassTP = Value
+    end)
+    Options.ToggleBypassTP:SetValue(false)
 
 local DropdownTweenSpeed = Tabs.Setting:AddDropdown("DropdownTweenSpeed", {
     Title = "Tween Speed",
