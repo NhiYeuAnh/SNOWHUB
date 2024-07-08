@@ -17,8 +17,6 @@ local Window = Fluent:CreateWindow({
     Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
     Theme = "Dark",
     MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
-    function loadconfig()
-    function saveconfig()
 })
 
 local vu = game:GetService("VirtualUser")
@@ -128,7 +126,7 @@ local AzureGui = Instance.new("ScreenGui")
         )
     end
     coroutine.wrap(drag)()
-
+-- Miss Hp
 local foldername = "SNOWHUB"
 local filename = foldername.."/Setting.json"
 function saveSettings()
