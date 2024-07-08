@@ -126,8 +126,8 @@ local AzureGui = Instance.new("ScreenGui")
         )
     end
     coroutine.wrap(drag)()
--- Miss Hp
-local foldername = "SNOWHUB"
+-- Miss Phương
+local foldername = "SNOWHUB.lua"
 local filename = foldername.."/Setting.json"
 function saveSettings()
     local HttpService = game:GetService("HttpService")
