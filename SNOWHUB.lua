@@ -1145,6 +1145,65 @@ Tabs.Main:AddButton({
 function UseCode(Text)
     game:GetService("ReplicatedStorage").Remotes.Redeem:InvokeServer(Text)
 end
+local Stats = Tabs.Main:AddDropdown("Stats", {
+    Title = "Select Add Stats",
+    Values = {"Melee", "Defense", "Sword", "Gun", "Devil Fruit"},
+    Multi = false,
+    Default = 1,
+})
+
+Stats:SetValue("Melee")
+
+Stats:OnChanged(function(Value)
+    _G.Stats = Value
+end)
+
+spawn(function()
+    while wait() do
+        if game.Players.localPlayer.Data.Points.Value >= 1 then
+            if _G.Stats == "Melee" then
+                local args = {
+                    [1] = "AddPoint",
+                    [2] = "Melee",
+                    [3] = 1
+                }
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+            end
+            if _G.Stats == "Defense" then
+                local args = {
+                    [1] = "AddPoint",
+                    [2] = "Defense",
+                    [3] = 1
+                }
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+            end
+            if _G.Stats == "Sword" then
+                local args = {
+                    [1] = "AddPoint",
+                    [2] = "Sword",
+                    [3] = 1
+                }
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+            end
+            if _G.Stats == "Gun" then
+                local args = {
+                    [1] = "AddPoint",
+                    [2] = "Gun",
+                    [3] = 1
+                }
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+                end
+            if _G.Stats == "Blox Fruit" then
+                local args = {
+                    [1] = "AddPoint",
+                    [2] = "Blox Fruit",
+                    [3] = 1
+                }
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+            end
+        end
+    end
+end)
 
 
 
@@ -1851,6 +1910,25 @@ end)
     
 
 ---- Setting
+local Battocv4 = Tabs.Setting:AddToggle("Battocv4", {Title = "Turn On V4", Default = false })
+
+    Battocv4:OnChanged(function(Value)
+        _G.TurnV4 = Value
+    end)
+
+    Options.Battocv4:SetValue(false)
+
+spawn(function()
+    while wait() do
+        pcall(function()
+            if _G.TurnV4 then
+                game:GetService("VirtualInputManager"):SendKeyEvent(true,"Y",false,game)
+                wait(0.1)
+                game:GetService("VirtualInputManager"):SendKeyEvent(false,"Y",false,game)
+            end
+        end)
+    end
+end)
 
 local DropdownTweenSpeed = Tabs.Setting:AddDropdown("DropdownTweenSpeed", {
     Title = "Tween Speed",
