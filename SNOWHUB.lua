@@ -1614,6 +1614,7 @@ spawn(function()
                                 Tween(game:GetService("ReplicatedStorage"):FindFirstChild("Cake Prince").HumanoidRootPart.CFrame * CFrame.new(20,40,20))
                             elseif game:GetService("ReplicatedStorage"):FindFirstChild("Dough King") then
                                 Tween(game:GetService("ReplicatedStorage"):FindFirstChild("Dough King").HumanoidRootPart.CFrame * CFrame.new(20,40,20))
+                                saveSettings()
                             end
                         end
                     end
