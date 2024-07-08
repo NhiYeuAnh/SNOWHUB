@@ -1517,6 +1517,7 @@ end)
 local ToggleAutoKatakuri = Tabs.Main:AddToggle("ToggleAutoKatakuri", {Title = "Auto Farm Katakuri", Default = false })
     ToggleAutoKatakuri:OnChanged(function(Value)
         _G.AutoKatakuri = Value
+        saveSettings()
 end)
 Options.ToggleAutoKatakuri:SetValue(false)
 
