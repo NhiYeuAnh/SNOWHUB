@@ -127,7 +127,7 @@ local AzureGui = Instance.new("ScreenGui")
         )
     end
     coroutine.wrap(drag)()
--- save setting
+    
 ----------------------------------------------------------------------------------------------------------------------------------------------
 
 if game.PlaceId == 2753915549 then
