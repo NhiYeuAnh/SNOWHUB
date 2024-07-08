@@ -2,7 +2,8 @@ notis = require(game.ReplicatedStorage:WaitForChild("Notification"))
 notis.new("<Color=White>Summer Hub<Color=/>"):Display()
 notis.new("<Color=Blue>Owner: summerhub<Color=/>"):Display() 
 notis.new("<Color=Yellow>Exploit Use:<Color=/> ".. identifyexecutor()):Display() 
-
+notis.new("<Color=Blue>Join Discord My Youtube<Color=/>"):Display()
+notis.new("<Color=Blue>Name Youtube: summerhub<Color=/>"):Display()  
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
@@ -14,7 +15,7 @@ local Window = Fluent:CreateWindow({
     SubTitle = "Blox Fruits Version",
     TabWidth = 160,
     Size = UDim2.fromOffset(520, 350),
-    Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
+    Acrylic = false, -- The blur may be detectable, setting this to false disables blur entirely
     Theme = "Dark",
     MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
 })
@@ -1910,18 +1911,30 @@ end)
     
 
 ---- Setting
-local Battocv4 = Tabs.Setting:AddToggle("Battocv4", {Title = "Turn On V4", Default = false })
 
-    Battocv4:OnChanged(function(Value)
-        _G.TurnV4 = Value
+local ToggleAutoAgility = Tabs.Setting:AddToggle("ToggleAutoAgility", {Title = "Auto On Race V3",Description = "", Default = false })
+ToggleAutoAgility:OnChanged(function(Value)
+    _G.AutoAgility = Value
+end)
+spawn(function()
+    pcall(function()
+        while wait() do
+            if _G.AutoAgility then
+                game:GetService("ReplicatedStorage").Remotes.CommE:FireServer("ActivateAbility")
+            end
+        end
     end)
+end)
 
-    Options.Battocv4:SetValue(false)
+local ToggleAutoV4 = Tabs.Setting:AddToggle("ToggleAutoV4", {Title = "Auto On Race V4", Description = "Auto Bật Tộc V4", Default = false })
+ToggleAutoV4:OnChanged(function(Value)
+    _G.AutoV4 = Value
+end)
 
 spawn(function()
     while wait() do
         pcall(function()
-            if _G.TurnV4 then
+            if _G.AutoV4 then
                 game:GetService("VirtualInputManager"):SendKeyEvent(true,"Y",false,game)
                 wait(0.1)
                 game:GetService("VirtualInputManager"):SendKeyEvent(false,"Y",false,game)
@@ -1929,6 +1942,11 @@ spawn(function()
         end)
     end
 end)
+local ToggleBypassTP = Tabs.Setting:AddToggle("ToggleBypassTP", {Title = "Bypass Tp", Default = false })
+    ToggleBypassTP:OnChanged(function(Value)
+        BypassTP = Value
+    end)
+    Options.ToggleBypassTP:SetValue(false)
 
 local DropdownTweenSpeed = Tabs.Setting:AddDropdown("DropdownTweenSpeed", {
     Title = "Tween Speed",
