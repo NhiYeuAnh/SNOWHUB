@@ -2308,7 +2308,7 @@ Tabs.Main2:AddSection("Chest Farm")
       end
   end)
 
-  local ToggleStopChest = Tabs.Main2:AddToggle("ToggleStopChest", {Title = "Stop Only Dark Key or God's Chalice", Default = true })
+  local ToggleStopChest = Tabs.Main2:AddToggle("ToggleStopChest", {Title = "Stop Only Dark Key or God's Chalice", Default = false })
   ToggleStopChest:OnChanged(function(Value)
     _G.StopChest = Value
   end)
@@ -2324,7 +2324,7 @@ Tabs.Main2:AddSection("Chest Farm")
     end
 end)
 
-Tabs.Main2:AddSection("Fuck Your Mom")
+Tabs.Main2:AddSection("Hi a béo")
 
 local ToggleAutoFactory = Tabs.Main2:AddToggle("ToggleAutoFactory", {Title = "Auto Factory", Default = false })
 ToggleAutoFactory:OnChanged(function(Value)
