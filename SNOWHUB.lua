@@ -3329,9 +3329,7 @@ local Toggle = Tabs.Item:AddToggle("MyToggle", {Title = "Get Saber", Default = f
 local Toggle = Tabs.Item:AddToggle("MyToggle", {Title = "Auto Rengoku", Default = false })
 Toggle:OnChanged(function(Value)
      _G.AutoRengoku = Value
-     StopTween(_G.AutoRengoku) 
-end)
-     spawn(function()
+          spawn(function()
         pcall(function()
             while wait() do
                 if _G.AutoRengoku then
