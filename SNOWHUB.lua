@@ -3329,6 +3329,8 @@ local Toggle = Tabs.Item:AddToggle("MyToggle", {Title = "Get Saber", Default = f
 local Toggle = Tabs.Item:AddToggle("MyToggle", {Title = "Auto Rengoku", Default = false })
 Toggle:OnChanged(function(Value)
      _G.AutoRengoku = Value
+     StopTween(_G.AutoRengoku) 
+end)
      spawn(function()
         pcall(function()
             while wait() do
@@ -3356,7 +3358,7 @@ Toggle:OnChanged(function(Value)
                     else
                         StartBring = false
                         topos(CFrame.new(5439.716796875, 84.420944213867, -6715.1635742188))
-                        StopTween(_G.AutoRengoku) 
+                        
                     end
                 end
             end
