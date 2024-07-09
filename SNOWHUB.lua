@@ -24,7 +24,6 @@ end
 --Notifi
 notis = require(game.ReplicatedStorage:WaitForChild("Notification"))
 notis.new("<Color=White>Summer Hub<Color=/>"):Display()
-notis.new("<Color=Red>Join Discord To Youtube summerhub<Color=/>"):Display()
 notis.new("<Color=Blue>Owner: summerhub<Color=/>"):Display() 
 
 ---Join Team
