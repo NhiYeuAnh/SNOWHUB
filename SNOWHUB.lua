@@ -3326,43 +3326,7 @@ local Toggle = Tabs.Item:AddToggle("MyToggle", {Title = "Get Saber", Default = f
 
 
         Tabs.Item:AddSection("Only Sea 2")
-local Toggle = Tabs.Item:AddToggle("MyToggle", {Title = "Auto Rengoku", Default = false })
-Toggle:OnChanged(function(Value)
-     _G.AutoRengoku = Value
-          spawn(function()
-        pcall(function()
-            while wait() do
-                if _G.AutoRengoku then
-                    if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Hidden Key") or game:GetService("Players").LocalPlayer.Character:FindFirstChild("Hidden Key") then
-                        EquipWeapon("Hidden Key")
-                        topos(CFrame.new(6571.1201171875, 299.23028564453, -6967.841796875))
-                    elseif game:GetService("Workspace").Enemies:FindFirstChild("Snow Lurker") or game:GetService("Workspace").Enemies:FindFirstChild("Arctic Warrior") then
-                        for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                            if (v.Name == "Snow Lurker" or v.Name == "Arctic Warrior") and v.Humanoid.Health > 0 then
-                                repeat task.wait(_G.FastAttackDelay)
-                                    EquipWeapon(_G.SelectWeapon)
-                                    AutoHaki()
-                                    v.HumanoidRootPart.CanCollide = false
-                                    v.HumanoidRootPart.Size = Vector3.new(50,50,50)
-                                    PosMon = v.HumanoidRootPart.CFrame
-                                    MonFarm = v.Name
-                                    topos(v.HumanoidRootPart.CFrame * Pos)
-                                    AttackNoCD()
-                                    StartBring = true
-                                until game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Hidden Key") or _G.AutoRengoku == false or not v.Parent or v.Humanoid.Health <= 0
-                                StartBring = false
-                            end
-                        end
-                    else
-                        StartBring = false
-                        topos(CFrame.new(5439.716796875, 84.420944213867, -6715.1635742188))
-                        
-                    end
-                end
-            end
-        end)
-    end)
-
+        
              Tabs.Item:AddSection("Only Sea 3")
 local Toggle = Tabs.Item:AddToggle("MyToggle", {Title = "Auto Soul Guitar", Default = false })
 
