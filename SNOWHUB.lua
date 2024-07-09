@@ -16,7 +16,7 @@ local hello = {
 
 
 if hello[exploit()] == false then
-    game:GetService("Players").LocalPlayer:Kick("Not Support " .. exploit() .. " | Ko Hỗ Trợ Bật Lên Cũng Vô Dụng " .. exploit())
+    game:GetService("Players").LocalPlayer:Kick("Not Support " .. exploit() .. " | không hỗ trợ " .. exploit())
 else
     print("Yeu Em Nhieu Lam")
 end
@@ -59,8 +59,8 @@ local Window = Fluent:CreateWindow({
     Title = "SUMMER HUB",
     SubTitle = "Blox Fruits Version",
     TabWidth = 160,
-    Size = UDim2.fromOffset(640, 375),
-    Acrylic = false, -- The blur may be detectable, setting this to false disables blur entirely
+    Size = UDim2.fromOffset(520, 350),
+    Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
     Theme = "Dark",
     MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
 })
@@ -3324,9 +3324,9 @@ local Toggle = Tabs.Item:AddToggle("MyToggle", {Title = "Get Saber", Default = f
         end)
 
 
-        Tabs.Item:AddSection("Only Sea 2")
-        
-             Tabs.Item:AddSection("Only Sea 3")
+
+
+        Tabs.Item:AddSection("Only Sea 3")
 local Toggle = Tabs.Item:AddToggle("MyToggle", {Title = "Auto Soul Guitar", Default = false })
 
     Toggle:OnChanged(function(Value)
